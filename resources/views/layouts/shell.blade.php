@@ -16,7 +16,7 @@
                 <a href="">Nosotros</a>
             </nav>
             <a href="{{ route('product.create') }}"
-                class="uppercase bg-dark-900 hover:bg-gray-600 flex rounded-full px-8 pt-2 pb-3 justify-center items-center text-white text-lg">Agendar
+                class="uppercase bg-dark-900 hover:bg-gray-600 flex rounded-full px-8 py-3 transition duration-300  justify-center items-center text-white text-lg">Agendar
                 Cita</a>
             @section('navbar')
             @show
