@@ -1,44 +1,33 @@
 @extends('layouts.shell')
 
-@section('title', 'Servicio')
+@section('title', 'Edit')
 
 
 @section('content')
     <section class=" container flex-col flex mx-auto px-4 sm:px-0 md:flex-row gap-20 py-10">
-        <div class="md:w-1/2 bg-white  rounded-2xl p-6 flex flex-col gap-2">
-            <h1 class=" text-xl font-semibold">Reunión de Consulta</h1>
-            <p class=" text-gray-700">Moldeando según identidades culturales, funcionales y contextuales, brindando un diseño arquitectónico en
-                sintonía con su entorno.</p>
-            <h2 class=" text-zafiro-500 text-lg font-semibold">Gratis</h2>
-            <p class=" ">Incluye</p>
-            <ul>
-                <li>Escuchar al cliente y tomar notas detalladas.</li>
-                <li>Discutir el presupuesto, plazos y restricciones.</li>
-                <li>Evaluar el sitio o espacio en cuestión.</li>
-                <img src="{{ asset('img/service-01.png') }}" alt="Logo" class="w-full rounded-lg">
-            </ul>
-        </div>
+
         <div class="md:w-1/2 mt-12">
-            <h2 class="text-xl font-semibold">Completar datos para la cita</h2>
-            <form action="{{ route('product.store') }}" method="POST">
+            <h2 class="text-xl font-semibold">Actualizar datos para la cita</h2>
+            <form action="{{ route('schedule.update', $appointment) }}" method="POST">
+                @method('PUT')
                 @csrf
                 <div class="mb-4">
                     <label for="name" class="block text-gray-500 text-sm font-normal mb-2 uppercase">Nombre</label>
-                    <input name="name" type="text" id="name" class=" border w-full  p-2 rounded-md " value= "{{old('name')}}" /><br />
+                    <input name="name" type="text" id="name" class=" border w-full  p-2 rounded-md " value= "{{old('name', $appointment->name )}}" /><br />
                     @error('name')
                         <small class=" font-semibold text-xs text-red-700">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-4">
                     <label for="phone" class="block text-gray-500 text-sm  font-normal mb-2 uppercase">Teléfono</label>
-                    <input type="text" name="phone" id="phone" class="border w-full  p-2 rounded-md" value= "{{old('phone')}}">
+                    <input type="text" name="phone" id="phone" class="border w-full  p-2 rounded-md" value= "{{old('phone',  $appointment->phone)}}">
                     @error('phone')
                     <small class=" font-semibold text-xs text-red-700">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-gray-500 text-sm  font-normal mb-2 uppercase">Email</label>
-                    <input type="email" name="email" id="email" class="border w-full  p-2 rounded-md" value= "{{old('email')}}">
+                    <input type="email" name="email" id="email" class="border w-full  p-2 rounded-md" value= "{{old('email',  $appointment->email)}}">
                     @error('email')
                     <small class=" font-semibold text-xs text-red-700">{{ $message }}</small>
                     @enderror
@@ -49,11 +38,10 @@
                     <select name="idProduct" id="idProduct" class="border w-full  p-2 rounded-md">
                         <option value="">Seleccione el servicio</option>
                         @foreach($products as $product)
-                            <option value={{$product->id}} @if (old('idProduct') == $product->id)selected
+                            <option value={{$product->id}} @if (old('idProduct') == $product->id  || $product->id == $appointment->product_package_id )selected
                             @endif>{{$product->package_name}}</option>
                         @endforeach
                     </select>
-
                 </div>
                 <div class="mb-4">
                     <label for="date" class="block text-gray-500 text-sm  font-normal mb-2 uppercase">Fecha</label>
@@ -67,14 +55,14 @@
 
                         @foreach($hours as $hour)
                         <label for={{$hour->id}}>{{$hour->busines_hour}}</label>
-                        <input id="hour" type="radio"  name="hour" value={{$hour->id}} @if (old('hour') == $hour->id) checked @endif/>
+                        <input id="hour" type="radio"  name="hour" value={{$hour->id}} @if (old('hour') == $hour->id || $hour->id == $appointment->business_hours_id) checked @endif/>
                         @endforeach
                     </span>
                 </div>
                 <div class="mb-4">
                     <label for="message" class="block text-gray-500 text-sm  font-normal mb-2 uppercase">Mensaje :</label>
                     <textarea name="message" rows="2" cols="20" id="message" style="height:64px;"
-                        class="border w-full  p-2 rounded-md" value = "{{old('message')}}" ></textarea><br />
+                        class="border w-full  p-2 rounded-md" value = "{{old('message', $appointment->message)}}" ></textarea><br />
                     @error('message')
                         <br>
                         <small>{{ $message }}</small>

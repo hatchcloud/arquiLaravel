@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
-use App\Http\Controllers\productController;
 use App\Http\Controllers\scheduleController;
 
 /*
@@ -17,8 +16,11 @@ use App\Http\Controllers\scheduleController;
 */
 
 Route::get('/', [homeController::class, 'index'])->name('home.index');
-Route::get('product/create', [productController::class, 'create'])->name('product.create');
-Route::post('product', [productController::class, 'store'])->name('product.store');
-Route::get('product/show/{productAppointment}', [productController::class, 'show'])->name('product.show');
+Route::get('schedule/create', [scheduleController::class, 'create'])->name('schedule.create');
+Route::post('schedule', [scheduleController::class, 'store'])->name('schedule.store');
+Route::get('schedule/show/{appointment}', [scheduleController::class, 'show'])->name('schedule.show');
+
+Route::get('schedule/{appointment}/edit', [scheduleController::class, 'edit'])->name('schedule.edit');
+Route::put('schedule/{appointment}', [scheduleController::class, 'update'])->name('schedule.update');
 
 Route::get('schedule', [scheduleController::class, 'index'])->name('schedule.index');

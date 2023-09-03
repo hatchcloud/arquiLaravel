@@ -20,7 +20,7 @@
         </div>
         <div class="md:w-1/2 mt-12">
             <h2 class="text-xl font-semibold">Completar datos para la cita</h2>
-            <form action="{{ route('product.store') }}" method="POST">
+            <form action="{{ route('schedule.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
                     <label for="name" class="block text-gray-500 text-sm font-normal mb-2 uppercase">Nombre</label>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-gray-500 text-sm  font-normal mb-2 uppercase">Email</label>
-                    <input type="email" name="email" id="email" class="border w-full  p-2 rounded-md" value= "{{old('email')}}">
+                    <input type="email" name="email" id="email" class="border w-full  p-2 rounded-md" value= "marisol@gmail.com">
                     @error('email')
                     <small class=" font-semibold text-xs text-red-700">{{ $message }}</small>
                     @enderror
