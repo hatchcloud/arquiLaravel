@@ -76,4 +76,10 @@ class scheduleController extends Controller
     }
 
 
+    public function destroy(appointment $appointment)
+    {
+        $appointment->delete();
+        return redirect()->route('home.index');
+    }
+
 }

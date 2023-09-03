@@ -22,5 +22,6 @@ Route::get('schedule/show/{appointment}', [scheduleController::class, 'show'])->
 
 Route::get('schedule/{appointment}/edit', [scheduleController::class, 'edit'])->name('schedule.edit');
 Route::put('schedule/{appointment}', [scheduleController::class, 'update'])->name('schedule.update');
+Route::delete('schedule/{appointment}', [scheduleController::class, 'destroy'])->name('schedule.destroy');
 
 Route::get('schedule', [scheduleController::class, 'index'])->name('schedule.index');

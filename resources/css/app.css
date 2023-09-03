@@ -21,5 +21,7 @@ body{
     width: 3rem;
 }
 
-
+.card-show{
+    max-width: 500px;
+}
 

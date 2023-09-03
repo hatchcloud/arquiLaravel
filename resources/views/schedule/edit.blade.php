@@ -4,10 +4,10 @@
 
 
 @section('content')
-    <section class=" container flex-col flex mx-auto px-4 sm:px-0 md:flex-row gap-20 py-10">
+    <section class=" container flex-col flex mx-auto px-4 sm:px-0 md:flex-row gap-20 py-10 ">
 
-        <div class="md:w-1/2 mt-12">
-            <h2 class="text-xl font-semibold">Actualizar datos para la cita</h2>
+        <div class="md:w-1/2 m-auto bg-white rounded-lg p-3 shadow-md">
+            <h2 class="text-xl font-semibold text-center mb-3">Actualizar datos para la cita</h2>
             <form action="{{ route('schedule.update', $appointment) }}" method="POST">
                 @method('PUT')
                 @csrf
@@ -45,7 +45,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="date" class="block text-gray-500 text-sm  font-normal mb-2 uppercase">Fecha</label>
-                    <input type="date" name="date" class="border w-full  p-2 rounded-md">
+                    <input type="date" name="date" class="border w-full  p-2 rounded-md" value= "{{old('date',  $appointment->date)}}">
                     @error('date')
                     <small class=" font-semibold text-xs text-red-700">{{ $message }}</small>
                     @enderror
@@ -70,8 +70,7 @@
                     @enderror
 
                 </div>
-                <button type="submit"
-                    class=" bg-dark-900 hover:bg-dark-950 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline rounded-full">Agendar</button>
+                <button type="submit" class=" bg-dark-900 hover:bg-dark-950 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline rounded-full">Agendar</button>
 
             </form>
 
